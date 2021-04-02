@@ -1,6 +1,5 @@
 import 'package:flutter_weather/models/models.dart';
 import 'dart:convert';
-// import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
 class WeatherApiClient {
