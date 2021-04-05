@@ -8,7 +8,7 @@ import 'package:flutter_weather/blocs/blocs.dart';
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepository weatherRepository;
 
-  WeatherBloc(this.weatherRepository) : super(WeatherInitial());
+  WeatherBloc({required this.weatherRepository}) : super(WeatherInitial());
 
   @override
   Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
