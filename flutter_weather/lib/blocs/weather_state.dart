@@ -16,7 +16,7 @@ class WeatherLoadInProgress extends WeatherState {}
 class WeatherLoadSuccess extends WeatherState {
   final Weather weather;
 
-  const WeatherLoadSuccess(this.weather);
+  const WeatherLoadSuccess({required this.weather});
 
   @override
   List<Object> get props => [];
