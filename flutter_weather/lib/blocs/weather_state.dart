@@ -13,6 +13,8 @@ class WeatherInitial extends WeatherState {}
 
 class WeatherLoadInProgress extends WeatherState {}
 
+class WeatherLoadInRefresh extends WeatherState {}
+
 class WeatherLoadSuccess extends WeatherState {
   final Weather weather;
 

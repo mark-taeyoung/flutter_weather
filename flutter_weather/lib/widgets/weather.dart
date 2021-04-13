@@ -18,7 +18,7 @@ class _WeatherState extends State<Weather> {
   @override
   void initState() {
     super.initState();
-    _refreshCompleter = Completer<void>();
+    _refreshCompleter = new Completer();
   }
 
   @override
@@ -62,8 +62,9 @@ class _WeatherState extends State<Weather> {
               BlocProvider.of<ThemeBloc>(context).add(
                 WeatherChanged(condition: state.weather.condition),
               );
-              _refreshCompleter.complete();
-              _refreshCompleter = Completer();
+              _refreshCompleter
+                  .complete(); // calls this when the value is ready
+              _refreshCompleter = new Completer();
             }
           },
           builder: (context, state) {
@@ -85,7 +86,8 @@ class _WeatherState extends State<Weather> {
                         BlocProvider.of<WeatherBloc>(context).add(
                           WeatherRefreshRequested(city: weather.location),
                         );
-                        return _refreshCompleter.future;
+                        return _refreshCompleter
+                            .future; // Send future object back to client
                       },
                       child: ListView(
                         children: <Widget>[
@@ -119,7 +121,7 @@ class _WeatherState extends State<Weather> {
                 style: TextStyle(color: Colors.red),
               );
             }
-            return Container();
+            return Container(child: Text('EXCEPTION!!'));
           },
         ),
       ),

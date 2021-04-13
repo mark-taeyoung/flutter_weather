@@ -21,7 +21,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   Stream<WeatherState> _mapWeatherRequestedToState(
       WeatherRequested event) async* {
-    yield WeatherLoadInProgress();
+    // yield WeatherLoadInProgress();
     try {
       final Weather weather = await weatherRepository.getWeather(event.city);
       yield WeatherLoadSuccess(weather: weather);
@@ -32,9 +32,12 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   Stream<WeatherState> _mapWeatherRefreshRequestedToState(
       WeatherRefreshRequested event) async* {
+    // yield WeatherLoadInRefresh();
     try {
       final Weather weather = await weatherRepository.getWeather(event.city);
       yield WeatherLoadSuccess(weather: weather);
-    } catch (_) {}
+    } catch (_) {
+      yield WeatherLoadFailure();
+    }
   }
 }
